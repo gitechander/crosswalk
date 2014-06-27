@@ -21,6 +21,7 @@
 #include "content/public/browser/web_contents.h"
 #include "content/public/common/main_function_params.h"
 #include "content/public/common/show_desktop_notification_params.h"
+#include "content/public/common/url_constants.h"
 #include "components/nacl/browser/nacl_browser.h"
 #include "components/nacl/browser/nacl_host_message_filter.h"
 #include "components/nacl/browser/nacl_process_host.h"
@@ -385,6 +386,14 @@ void XWalkContentBrowserClient::GetStoragePartitionConfigForSite(
   if (site.SchemeIs(application::kApplicationScheme))
     *partition_domain = site.host();
 #endif
+}
+
+void  XWalkContentBrowserClient::GetAdditionalAllowedSchemesForFileSystem(
+    std::vector<std::string>* additional_allowed_schemes) {
+  ContentBrowserClient::GetAdditionalAllowedSchemesForFileSystem(
+      additional_allowed_schemes);
+  additional_allowed_schemes->push_back(content::kChromeUIScheme);
+
 }
 
 }  // namespace xwalk

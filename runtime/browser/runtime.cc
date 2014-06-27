@@ -264,11 +264,7 @@ content::ColorChooser* Runtime::OpenColorChooser(
 void Runtime::RunFileChooser(
     content::WebContents* web_contents,
     const content::FileChooserParams& params) {
-#if defined(USE_AURA) && defined(OS_LINUX)
-  NOTIMPLEMENTED();
-#else
   RuntimeFileSelectHelper::RunFileChooser(web_contents, params);
-#endif
 }
 
 void Runtime::EnumerateDirectory(content::WebContents* web_contents,

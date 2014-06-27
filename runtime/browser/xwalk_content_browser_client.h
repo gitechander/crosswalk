@@ -140,6 +140,8 @@ class XWalkContentBrowserClient : public content::ContentBrowserClient {
       std::string* partition_name,
       bool* in_memory) OVERRIDE;
 
+  virtual void GetAdditionalAllowedSchemesForFileSystem(
+      std::vector<std::string>* additional_schemes) OVERRIDE;
 
   XWalkBrowserMainParts* main_parts() { return main_parts_; }
 

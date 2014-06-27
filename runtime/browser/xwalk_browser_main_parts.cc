@@ -24,7 +24,9 @@
 #include "content/public/common/result_codes.h"
 #include "extensions/browser/extension_system.h"
 #include "net/base/filename_util.h"
+#include "ozone/ui/webui/ozone_webui.h"
 #include "ui/gl/gl_switches.h"
+#include "ui/wm/core/wm_state.h"
 #include "xwalk/application/browser/application.h"
 #include "xwalk/application/browser/application_system.h"
 #include "xwalk/extensions/browser/xwalk_extension_service.h"
@@ -129,6 +131,12 @@ void XWalkBrowserMainParts::PreEarlyInitialization() {
 #if defined(USE_AURA) && defined(USE_X11)
     ui::InitializeInputMethodForTesting();
 #endif
+
+    views::LinuxUI::SetInstance(BuildWebUI());
+}
+
+void XWalkBrowserMainParts::ToolkitInitialized() {
+  wm_state_.reset(new wm::WMState);
 }
 
 int XWalkBrowserMainParts::PreCreateThreads() {

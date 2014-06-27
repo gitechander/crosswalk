@@ -20,6 +20,9 @@ namespace content {
 class RenderProcessHost;
 }
 
+namespace wm {
+class WMState;
+}
 namespace xwalk {
 
 class RemoteDebuggingServer;
@@ -44,6 +47,7 @@ class XWalkBrowserMainParts : public content::BrowserMainParts {
   virtual void PreMainMessageLoopRun() OVERRIDE;
   virtual bool MainMessageLoopRun(int* result_code) OVERRIDE;
   virtual void PostMainMessageLoopRun() OVERRIDE;
+  virtual void ToolkitInitialized() OVERRIDE;
 
   // Create all the extensions to be hooked into a new
   // RenderProcessHost. Base class implementation should be called by
@@ -81,6 +85,8 @@ class XWalkBrowserMainParts : public content::BrowserMainParts {
 
   // Remote debugger server.
   scoped_ptr<RemoteDebuggingServer> remote_debugging_server_;
+
+  scoped_ptr<wm::WMState> wm_state_;
 
  private:
   DISALLOW_COPY_AND_ASSIGN(XWalkBrowserMainParts);

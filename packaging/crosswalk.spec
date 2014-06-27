@@ -91,6 +91,7 @@ BuildRequires:  pkgconfig(xtst)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(wayland-egl)
+BuildRequires:  pkgconfig(weston)
 BuildRequires:  pkgconfig(xkbcommon)
 %else
 BuildRequires:  pkgconfig(scim)
