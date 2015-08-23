@@ -375,6 +375,20 @@ public class XWalkViewInternal extends android.widget.FrameLayout {
         checkThreadSafety();
         mContent.loadUrl(url, content);
     }
+    
+    /**
+     * Set device radius for round display.
+     *
+     * @param radius the radius of a quarter ellipse in terms of the shape of
+     *               the corner of the outer screen edge.
+     * @since 1.0
+     */
+    @XWalkAPI
+    public void setDeviceRadius(int radius) {
+        if (mContent == null) return;
+        checkThreadSafety();
+        mContent.setDeviceRadius(radius);
+    }
 
     /**
      * Load a web app from a given manifest.json file. If content is not null,

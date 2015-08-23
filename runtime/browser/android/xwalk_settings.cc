@@ -72,6 +72,8 @@ struct XWalkSettings::FieldIds {
         GetFieldID(env, clazz, "mMediaPlaybackRequiresUserGesture", "Z");
     default_video_poster_url =
         GetFieldID(env, clazz, "mDefaultVideoPosterURL", kStringClassName);
+    device_radius =
+           GetFieldID(env, clazz, "mDeviceRadius", "I");
   }
 
   // Field ids
@@ -88,6 +90,7 @@ struct XWalkSettings::FieldIds {
   jfieldID use_wide_viewport;
   jfieldID media_playback_requires_user_gesture;
   jfieldID default_video_poster_url;
+  jfieldID device_radius;
 };
 
 XWalkSettings::XWalkSettings(JNIEnv* env,
@@ -202,6 +205,9 @@ void XWalkSettings::UpdateWebkitPreferences(JNIEnv* env, jobject obj) {
 
   prefs.user_gesture_required_for_media_playback = env->GetBooleanField(
       obj, field_ids_->media_playback_requires_user_gesture);
+
+  prefs.device_radius = env->GetIntField(
+        obj, field_ids_->device_radius);
 
   base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
   prefs.allow_running_insecure_content =

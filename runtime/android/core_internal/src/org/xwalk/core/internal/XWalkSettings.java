@@ -17,6 +17,7 @@ import org.chromium.base.JNINamespace;
 import org.chromium.base.ThreadUtils;
 import org.chromium.content_public.browser.WebContents;
 
+
 /**
  * @hide
  */
@@ -49,6 +50,7 @@ public class XWalkSettings {
     private boolean mUseWideViewport = false;
     private boolean mMediaPlaybackRequiresUserGesture = false;
     private String mDefaultVideoPosterURL;
+    private int mDeviceRadius = 0;
 
     // Not accessed by the native side.
     private boolean mBlockNetworkLoads;  // Default depends on permission of embedding APK.
@@ -590,6 +592,20 @@ public class XWalkSettings {
             }
         }
     }
+    public void setDeviceRadius(int radius) {
+        synchronized (mXWalkSettingsLock) {
+            if (mDeviceRadius != radius) {
+                mDeviceRadius = radius;
+                mEventHandler.updateWebkitPreferencesLocked();
+            }
+        }
+    }
+    
+    public int getDeviceRadius() {
+        synchronized (mXWalkSettingsLock) {
+            return mDeviceRadius;
+        }
+     }
 
     /**
      * @return returns the default User-Agent used by each ContentViewCore instance, i.e. unless

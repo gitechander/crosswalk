@@ -26,7 +26,9 @@ interface XWalkRuntimeViewProvider {
     // For RuntimeView APIs.
     public String getVersion();
     public View getView();
-    public void loadAppFromUrl(String url);
+    public void loadAppFromUrl(String url);   
+    public void setDeviceRadius(int radius);
+
     public void loadAppFromManifest(String manifestUrl);
     public void enableRemoteDebugging(String frontEndUrl, String socketName);
     public void disableRemoteDebugging();

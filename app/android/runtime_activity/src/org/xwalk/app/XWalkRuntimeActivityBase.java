@@ -9,7 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowInsets;
 
 import org.xwalk.app.runtime.extension.XWalkRuntimeExtensionManager;
 import org.xwalk.app.runtime.XWalkRuntimeView;
@@ -26,10 +28,23 @@ public abstract class XWalkRuntimeActivityBase extends XWalkActivity {
     private boolean mUseAnimatableView = false;
 
     private XWalkRuntimeExtensionManager mExtensionManager;
-
+    
+    private static boolean mRoundDisplay = false;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
+        view.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                if (insets.isRound())
+                    mRoundDisplay = true;
+                else
+                    mRoundDisplay = false;
+                return insets;
+            }
+         });
     }
 
     @Override
@@ -108,6 +123,14 @@ public abstract class XWalkRuntimeActivityBase extends XWalkActivity {
             }
         } catch (Exception e) {
             handleException(e);
+        }
+
+        if (mRoundDisplay) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            mRuntimeView.setDeviceRadius(metrics.widthPixels / 2);
+        } else {
+            mRuntimeView.setDeviceRadius(0);
         }
         didTryLoadRuntimeView(mRuntimeView);
     }
