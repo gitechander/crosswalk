@@ -854,6 +854,7 @@
             'xwalk_runtime_lib_apk',
             'xwalk_runtime_lib_lzma_apk',
             'xwalk_app_hello_world_apk',
+            'xwalk_app_weather_wear_apk',
             'xwalk_app_template',
             'xwalk_core_sample_apk',
             'xwalk_core_library_aar',
