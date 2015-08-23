@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+  <meta name="viewport" content="user-scalable=no,  width=320">
+  <link rel="stylesheet" type="text/css" media="screen and (device-radius: 0%)" href="weekly_rect.css">
+  <link rel="stylesheet" type="text/css" media="screen and (device-radius: 50%)" href="weekly_circle.css">
+  <style>
+    body { overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="current">
+      <div id="city">Paris</div>
+      <div id="date">WED 26 AUG, 2015</div>
+      <div id="temperature">
+        <div id="minTemp">
+          <img class="tempImage" src="Thermometer-25.svg">
+          <span class="tempValue">16 °C</span>
+        </div>
+        <div id="maxTemp">
+          <img class="tempImage" src="Thermometer-75.svg">
+          <span class="tempValue">25 °C</span>
+        </div>
+      </div>
+      <img id = "weatherImg" src="partly_cloudy.png" alt="partlyCloudy">
+    </div>
+    <div id="info">
+      <div id="info1">THU
+        <img class="weatherSvg" id="svg1" src="Cloud-Sun.svg">
+        <span class="weatherValue">28 °C</span>
+      </div>
+      <div id="info2">FRI
+        <img class="weatherSvg" id="svg2" src="Sun.svg">
+        <span class="weatherValue">27 °C</span>
+      </div>
+      <div id="info3">SAT
+        <img class="weatherSvg" id="svg3" src="Cloud-Sun.svg">
+        <span class="weatherValue">27 °C</span>
+      </div>
+    </div>
+    <div id="bottom">
+      <img id="page" onClick="location.href='index.html'" src="page.png" />
+    </div>
+  </div>
+</body>
+</html>
