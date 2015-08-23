@@ -78,6 +78,8 @@ struct XWalkSettings::FieldIds {
         GetFieldID(env, clazz, "mDefaultFontSize", "I");
     default_fixed_font_size =
         GetFieldID(env, clazz, "mDefaultFixedFontSize", "I");
+    device_radius =
+           GetFieldID(env, clazz, "mDeviceRadius", "I");
   }
 
   // Field ids
@@ -97,6 +99,7 @@ struct XWalkSettings::FieldIds {
   jfieldID text_size_percent;
   jfieldID default_font_size;
   jfieldID default_fixed_font_size;
+  jfieldID device_radius;
 };
 
 XWalkSettings::XWalkSettings(JNIEnv* env,
@@ -218,6 +221,9 @@ void XWalkSettings::UpdateWebkitPreferences(JNIEnv* env, jobject obj) {
 
   prefs.double_tap_to_zoom_enabled =
       Java_XWalkSettingsInternal_supportsDoubleTapZoomLocked(env, obj);
+
+  prefs.device_radius = env->GetIntField(
+        obj, field_ids_->device_radius);
 
   base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
   prefs.allow_running_insecure_content =

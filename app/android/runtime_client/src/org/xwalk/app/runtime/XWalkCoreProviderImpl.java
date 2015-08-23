@@ -42,6 +42,11 @@ class XWalkCoreProviderImpl implements XWalkRuntimeViewProvider {
     }
 
     @Override
+    public void setDeviceRadius(int radius) {
+        mXWalkView.setDeviceRadius(radius);
+    }
+
+    @Override
     public void loadAppFromManifest(String manifestUrl) {
         mXWalkView.loadAppFromManifest(manifestUrl, null);
     }
