@@ -1,19 +1,68 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>
-Crosswalk Sample Application
-</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=320">
+    <title>CSS Media Queries Extension (device-radius) </title>
+<style>
+  body { 
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    overflow: hidden; 
+ }
+
+@media screen and (max-device-radius: 50%) {
+    #container {
+        border-boundary: display;
+    }   
+}
+
+
+    #container {
+     height: 100vh;
+    }
+    #redBox {
+      border: 10px red solid;
+     height: 27vh;
+    }
+    #greenBox {
+      border: 10px green solid;
+      height: 27vh;
+    }
+    #blueBox {
+      border: 10px blue solid;
+      height: 27vh;
+     }
+</style>
 </head>
 <body>
-<div style="text-align:center;margin:100">
-</div>
-<div style="text-align:center;margin:50;font-size:64;font-weight:bold">
-Welcome to Crosswalk
-</div>
-<div style="text-align:center;margin:20;font-size:48">
-A perfect way for writing<br>
-stand-alone web applications<br>
-for Android
+
+<div id="container">
+    <div id="redBox">
+       <div style="text-align:center;font-size:64;font-weight:bold">
+         <br>
+         Welcome to Crosswalk<br>
+       A perfect way for writing<br>
+       </div>
+    </div>
+
+    <div id="greenBox">
+      <div style="text-align:center;font-size:48">
+         <br>
+       stand-alone web applications<br>
+       for Android<br>
+      This is the Border Boundary demo.<br>
+     </div>
+    </div>
+
+    <div id="blueBox">
+      <div style="text-align:center;font-size:48">
+      Click <a href="polar.html">here</a> for the Polar Coordinate demo.
+     </div>
+    </div>
 </div>
 </body>
 </html>
+
