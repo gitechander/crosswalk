@@ -40,6 +40,10 @@
         'resource_dir': 'app/android/app_hello_world/res',
         'additional_input_paths': [
           '<(PRODUCT_DIR)/app_hello_world/assets/www/index.html',
+          '<(PRODUCT_DIR)/app_hello_world/assets/www/polar.html',
+          '<(PRODUCT_DIR)/app_hello_world/assets/www/polar.css',
+          '<(PRODUCT_DIR)/app_hello_world/assets/www/down_arrow.svg',
+          '<(PRODUCT_DIR)/app_hello_world/assets/www/up_arrow.svg',
           '<(PRODUCT_DIR)/app_hello_world/assets/www/sampapp-icon-helloworld.png',
         ],
         'asset_location': '<(PRODUCT_DIR)/app_hello_world/assets',
@@ -51,6 +55,10 @@
           'destination': '<(PRODUCT_DIR)/app_hello_world/assets/www',
           'files': [
             'test/android/data/index.html',
+            'test/android/data/polar.html',
+            'test/android/data/polar.css',
+            'test/android/data/down_arrow.svg',
+            'test/android/data/up_arrow.svg',
             'test/android/data/sampapp-icon-helloworld.png',
           ],
         },
