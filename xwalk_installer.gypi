@@ -39,18 +39,6 @@
               '<(PRODUCT_DIR)/lib/libffmpeg.so',
             ],
           }],
-          ['target_arch=="ia32"', {
-            'deb_arch': 'i386',
-            'packaging_files_common': [
-              '<(DEPTH)/build/linux/bin/eu-strip',
-            ],
-          }],
-          ['target_arch=="x64"', {
-            'deb_arch': 'amd64',
-            'packaging_files_common': [
-              '<!(which eu-strip)',
-            ],
-          }],
         ],
       },
       'targets': [
@@ -115,7 +103,7 @@
                 '<@(packaging_files_deb)',
               ],
               'outputs': [
-                '<(PRODUCT_DIR)/crosswalk-<(xwalk_version)-1_<(deb_arch).deb',
+                '<(PRODUCT_DIR)/crosswalk-<(xwalk_version)-1_deb',
               ],
               'action': [ '<@(deb_cmd)', ],
             },
