@@ -80,6 +80,8 @@ struct XWalkSettings::FieldIds {
         GetFieldID(env, clazz, "mDefaultFixedFontSize", "I");
     spatial_navigation_enabled =
         GetFieldID(env, clazz, "mSpatialNavigationEnabled", "Z");
+    device_radius =
+        GetFieldID(env, clazz, "mDeviceRadius", "I");
     quirks_mode_enabled =
         GetFieldID(env, clazz, "mQuirksModeEnabled", "Z");
   }
@@ -103,6 +105,7 @@ struct XWalkSettings::FieldIds {
   jfieldID default_fixed_font_size;
   jfieldID spatial_navigation_enabled;
   jfieldID quirks_mode_enabled;
+  jfieldID device_radius;
 };
 
 XWalkSettings::XWalkSettings(JNIEnv* env,
@@ -227,6 +230,9 @@ void XWalkSettings::UpdateWebkitPreferences(JNIEnv* env, jobject obj) {
 
   prefs.spatial_navigation_enabled = env->GetBooleanField(
       obj, field_ids_->spatial_navigation_enabled);
+
+  prefs.device_radius = env->GetIntField(
+        obj, field_ids_->device_radius);
 
   base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
   prefs.allow_running_insecure_content =

@@ -81,6 +81,17 @@ public class XWalkRuntimeView extends LinearLayout {
     }
 
     /**
+     * Set the display radius.
+     *
+     * @param radius a radius of a quarter ellipse in terms of the shape of
+     *        the corner of the outer screen edge.
+     */
+    
+    public void setDeviceRadius(int radius) {
+        mProvider.setDeviceRadius(radius);
+    }
+
+    /**
      * Load a web application through the url of the manifest file.
      * The manifest file typically is placed in android assets. Now it is
      * compliant to W3C SysApps spec.

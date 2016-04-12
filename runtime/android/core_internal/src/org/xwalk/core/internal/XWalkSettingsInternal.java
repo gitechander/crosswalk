@@ -52,6 +52,7 @@ public class XWalkSettingsInternal {
     private boolean mMediaPlaybackRequiresUserGesture = false;
     private String mDefaultVideoPosterURL;
     private final boolean mPasswordEchoEnabled;
+    private int mDeviceRadius = 0;
 
     // Not accessed by the native side.
     private boolean mBlockNetworkLoads;  // Default depends on permission of embedding APK.
@@ -642,6 +643,21 @@ public class XWalkSettingsInternal {
             }
         }
     }
+
+    public void setDeviceRadius(int radius) {
+        synchronized (mXWalkSettingsLock) {
+            if (mDeviceRadius != radius) {
+                mDeviceRadius = radius;
+                mEventHandler.updateWebkitPreferencesLocked();
+            }
+        }
+    }
+
+    public int getDeviceRadius() {
+        synchronized (mXWalkSettingsLock) {
+            return mDeviceRadius;
+        }
+     }
 
     /**
      * @return returns the default User-Agent used by each ContentViewCore instance, i.e. unless

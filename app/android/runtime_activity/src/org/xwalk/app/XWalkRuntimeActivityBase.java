@@ -9,8 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Toast;
+import android.view.WindowInsets;
 
 import org.xwalk.app.runtime.XWalkRuntimeView;
 import org.xwalk.core.XWalkActivityDelegate;
@@ -25,6 +27,8 @@ public abstract class XWalkRuntimeActivityBase extends Activity {
     private boolean mRemoteDebugging = false;
 
     private boolean mUseAnimatableView = false;
+
+    private static boolean mRoundDisplay = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,18 @@ public abstract class XWalkRuntimeActivityBase extends Activity {
         mActivityDelegate = new XWalkActivityDelegate(this, cancelCommand, completeCommand);
 
         tryLoadRuntimeView();
+
+        View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
+        view.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                if (insets.isRound())
+                    mRoundDisplay = true;
+                else
+                    mRoundDisplay = false;
+                return insets;
+            }
+         });
     }
 
     public void onXWalkReady() {
@@ -60,6 +76,15 @@ public abstract class XWalkRuntimeActivityBase extends Activity {
             // RuntimeView will finally employ XWalkView to load external extensions.
             mRuntimeView.loadExtensions();
         }
+
+        if (mRoundDisplay) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            mRuntimeView.setDeviceRadius(metrics.widthPixels / 2);
+        } else {
+            mRuntimeView.setDeviceRadius(0);
+        }
+
         didTryLoadRuntimeView(mRuntimeView);
         // TODO(sunlin): In shared mode, mRuntimeView.onCreate() will be
         // called after onResume(). Currently, there is no impact because

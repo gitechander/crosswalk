@@ -306,6 +306,12 @@ class XWalkContent implements XWalkPreferencesInternal.KeyValueChangeListener {
         mIsLoaded = true;
     }
 
+    public void setDeviceRadius(int radius) {
+        if (mSettings != null) {
+            mSettings.setDeviceRadius(radius);
+        }
+    }
+
     public void reload(int mode) {
         if (mNativeContent == 0) return;
 
